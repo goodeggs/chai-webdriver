@@ -1,6 +1,8 @@
 chai-webdriver
 ==============
 
+[![NPM](https://nodei.co/npm/chai-webdriver.png?compact=true)](https://nodei.co/npm/chai-webdriver/)
+
 Build more expressive integration tests with some [selenium-webdriver](https://npmjs.org/package/selenium-webdriver) sugar for the [Chai Assertion Library](http://chaijs.com/).
 
 Allows for assertions that look like this:
