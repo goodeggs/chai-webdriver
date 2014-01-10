@@ -1,0 +1,38 @@
+{
+  "name": "chai-webdriver",
+  "version": "0.1.0",
+  "description": "Build more expressive integration tests with some webdriver sugar for chai.js",
+  "main": "lib/index.js",
+  "scripts": {
+    "build": "coffee --bare --compile --output lib/ src/",
+    "pretest": "npm run-script build",
+    "test": "mocha --compilers coffee:coffee-script spec/*.spec.coffee",
+    "prepublish": "npm run-script build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/goodeggs/chai-webdriver"
+  },
+  "keywords": [
+    "chai",
+    "webdriver",
+    "integration-tests",
+    "chai-plugin"
+  ],
+  "author": "Max Edmands",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/goodeggs/chai-webdriver/issues"
+  },
+  "dependencies": {
+    "selenium-webdriver": "~2.39.0",
+    "sizzle": "~1.1.0",
+    "uglify-js": "~2.4.8"
+  },
+  "devDependencies": {
+    "coffee-script": "~1.6.3",
+    "chai": "~1.8.1",
+    "mocha": "~1.17.0",
+    "browserify": "~3.19.1"
+  }
+}
