@@ -1,4 +1,5 @@
 fs = require 'fs'
+string = require 'string'
 uglify = require 'uglify-js'
 seleniumWebdriver = require 'selenium-webdriver'
 sizzleCode = uglify.minify(fs.readFileSync(require.resolve('sizzle'), 'utf8'), fromString: yes).code
@@ -22,8 +23,7 @@ module.exports = (driver) ->
     assertElementExists = (selector, done) ->
       findElementsByCss(selector).then (els) ->
         if els.length is 0
-          takeScreenshot "#{string(selector).slugify()}.png", ->
-            throw new Error "Could not find element with selector #{selector}"
+          throw new Error "Could not find element with selector #{selector}"
         else
           done()
 
