@@ -27,6 +27,7 @@ Finally, we can add our assertion to the chain:
 - `expect(selector).dom.to.have.text('string')` - Test the text value of the dom against supplied string. Exact matches only.
 - `expect(selector).dom.to.contains.text('string')` - Test the text value of the dom against supplied string. Partial matches allowed.
 - `expect(selector).dom.to.be.visible()` - Check whether or not the element is being rendered
+- `expect(selector).dom.to.be.disabled()` - Check whether or not the form element is disabled
 - `expect(selector).dom.to.have.count(number)` - Test how many elements exist in the dom with the supplied selector
 - `expect(selector).dom.to.have.style('property', 'value')` - Test the CSS style of the element. Exact matches only, unfortunately, for now.
 - `expect(selector).dom.to.have.value('string')` - Test the value of a form field against supplied string.

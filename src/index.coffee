@@ -93,3 +93,12 @@ module.exports = (driver) ->
             "Expected value of element <#{@_obj}> to be '#{value}', but it is '#{actualValue}'.",
             "Expected value of element <#{@_obj}> to not be '#{value}', but it is.",
           done() if typeof done is 'function'
+
+    chai.Assertion.addMethod 'disabled', (done) ->
+      throw new Error('Can only test value of dom elements') unless utils.flag @, 'dom'
+      assertElementExists @_obj, =>
+        findElementByCss(@_obj).getAttribute('disabled').then (disabled) =>
+          @assert disabled,
+            'Expected #{this} to be disabled but it is not',
+            'Expected #{this} to not be disabled but it is'
+          done() if typeof done is 'function'

@@ -44,8 +44,8 @@ describe '#visible', ->
 
 describe '#count', ->
 
-  it 'verifies that an element appears twice', (done) ->
-    expect('input').dom.to.have.count 2, done
+  it 'verifies that an element appears thrice', (done) ->
+    expect('input').dom.to.have.count 3, done
 
   it 'verifies that a non-existing element has a count of 0', (done) ->
     expect('.does-not-exist').dom.to.have.count 0, done
@@ -65,3 +65,11 @@ describe '#value', ->
 
   it 'verifies that a text field does not have a specific value', (done) ->
     expect('.does-exist').dom.not.to.have.value 'Beep boop', done
+
+describe '#disabled', ->
+  it 'verifies that an input is disabled', (done) ->
+    expect('.i-am-disabled').dom.to.be.disabled done
+
+  it 'verifies that an input is not disabled', (done) ->
+    expect('.does-exist').dom.not.to.be.disabled done
+
