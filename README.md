@@ -3,6 +3,7 @@ chai-webdriver
 
 [![NPM](https://nodei.co/npm/chai-webdriver.png?compact=true)](https://nodei.co/npm/chai-webdriver/)
 
+[![Build Status](https://travis-ci.org/goodeggs/chai-webdriver.png)](https://travis-ci.org/goodeggs/chai-webdriver)
 [![Dependency Status](https://david-dm.org/goodeggs/chai-webdriver.png)](https://david-dm.org/goodeggs/chai-webdriver)
 
 Provides [selenium-webdriver](https://npmjs.org/package/selenium-webdriver) sugar for the [Chai](http://chaijs.com/) assertion library. Allows you to create expressive integration tests:
