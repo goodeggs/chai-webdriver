@@ -5,9 +5,7 @@ chai-webdriver
 
 [![Dependency Status](https://david-dm.org/goodeggs/chai-webdriver.png)](https://david-dm.org/goodeggs/chai-webdriver)
 
-Build more expressive integration tests with some [selenium-webdriver](https://npmjs.org/package/selenium-webdriver) sugar for the [Chai Assertion Library](http://chaijs.com/).
-
-Allows for assertions that look like this:
+Provides [selenium-webdriver](https://npmjs.org/package/selenium-webdriver) sugar for the [Chai](http://chaijs.com/) assertion library. Allows you to create expressive integration tests:
 
 ```javascript
 expect('.frequency-field').dom.to.contain.text('One time')
