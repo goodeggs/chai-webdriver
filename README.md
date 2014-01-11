@@ -1,5 +1,4 @@
-chai-webdriver
-==============
+# chai-webdriver
 
 [![NPM](https://nodei.co/npm/chai-webdriver.png?compact=true)](https://nodei.co/npm/chai-webdriver/)
 
