@@ -10,9 +10,9 @@ driver = new webdriver.Builder()
 chai.use chaiWebdriver(driver)
 {expect} = chai
 
-before ->
+before (done) ->
   url = "file://#{path.join __dirname, 'test.html'}"
-  driver.get url
+  driver.get(url).then -> done()
 
 after (done) ->
   driver.quit().then -> done()
@@ -20,7 +20,6 @@ after (done) ->
 describe '#text', ->
 
   it 'verifies that an element has exact text', (done) ->
-    @timeout 5000 # I know. :(
     expect('h1').dom.to.have.text "The following text is an excerpt from Finnegan's Wake by James Joyce", done
 
   it 'verifies that an element does not have exact text', (done) ->
