@@ -11,6 +11,7 @@ chai.use chaiWebdriver(driver)
 {expect} = chai
 
 before (done) ->
+  @timeout 0 # this may take a while in CI
   url = "file://#{path.join __dirname, 'test.html'}"
   driver.get(url).then -> done()
 
