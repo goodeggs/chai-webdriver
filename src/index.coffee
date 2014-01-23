@@ -2,7 +2,12 @@ fs = require 'fs'
 string = require 'string'
 uglify = require 'uglify-js'
 seleniumWebdriver = require 'selenium-webdriver'
-sizzleCode = uglify.minify(fs.readFileSync(require.resolve('sizzle'), 'utf8'), fromString: yes).code
+sizzleCode = uglify.minify(
+  fs.readFileSync(require.resolve('sizzle'), 'utf8')
+  fromString: yes
+  output:
+    ascii_only: true
+).code
 
 addSizzle = (driver) ->
   {get} = driver
