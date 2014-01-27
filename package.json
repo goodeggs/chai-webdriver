@@ -34,7 +34,8 @@
     "coffee-script": "~1.6.3",
     "chai": "~1.8.1",
     "mocha": "~1.17.0",
-    "browserify": "~3.19.1"
+    "browserify": "~3.19.1",
+    "phantomjs": "~1.9.7"
   },
   "engines": {
     "node": ">=0.10.0"
