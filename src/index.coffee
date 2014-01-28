@@ -9,14 +9,15 @@ sizzleCode = uglify.minify(
     ascii_only: true
 ).code
 
-addSizzle = (driver) ->
+injectSizzle = (driver) ->
+  if driver.executeScript(-> window.Sizzle)?
+    driver.executeScript sizzleCode
+
+module.exports = chaiWebdriver = (driver) ->
   {get} = driver
   driver.get = ->
     get.apply(driver, arguments).then ->
-      driver.executeScript sizzleCode
-
-module.exports = (driver) ->
-  addSizzle driver
+      injectSizzle driver
 
   findElementByCss = (css) ->
     driver.findElement seleniumWebdriver.By.js((css) -> (Sizzle(css) or [])[0]), css
@@ -116,3 +117,4 @@ module.exports = (driver) ->
             "Expected #{classList} to contain #{value}, but it does not."
           done() if typeof done is 'function'
 
+chaiWebdriver.injectSizzle = injectSizzle
