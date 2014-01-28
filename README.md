@@ -1,7 +1,5 @@
 # chai-webdriver
 
-[![NPM](https://nodei.co/npm/chai-webdriver.png?mini=true)](https://nodei.co/npm/chai-webdriver/)
-
 [![Build Status](https://travis-ci.org/goodeggs/chai-webdriver.png)](https://travis-ci.org/goodeggs/chai-webdriver)
 [![Dependency Status](https://david-dm.org/goodeggs/chai-webdriver.png)](https://david-dm.org/goodeggs/chai-webdriver)
 
