@@ -107,3 +107,12 @@ module.exports = (driver) ->
             'Expected #{this} to be disabled but it is not',
             'Expected #{this} to not be disabled but it is'
           done() if typeof done is 'function'
+
+    chai.Assertion.addMethod 'htmlClass', (value, done) ->
+      throw new Error('Can only test value of dom elements') unless utils.flag @, 'dom'
+      assertElementExists @_obj, =>
+        findElementByCss(@_obj).getAttribute('class').then (classList) =>
+          @assert ~classList.indexOf(value),
+            "Expected #{classList} to contain #{value}, but it does not."
+          done() if typeof done is 'function'
+

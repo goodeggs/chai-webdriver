@@ -74,3 +74,9 @@ describe '#disabled', ->
   it 'verifies that an input is not disabled', (done) ->
     expect('.does-exist').dom.not.to.be.disabled done
 
+describe 'htmlClass', ->
+  it 'verifies that an element has a given class', (done) ->
+    expect('.does-exist').dom.to.have.htmlClass 'second-class', (done)
+
+  it 'verifies than an element does not have a given class', (done) ->
+    expect('.green-text').dom.not.to.have.htmlClass 'second-class', (done)
