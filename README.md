@@ -37,10 +37,6 @@ You can also always add a `not` in there to negate the assertion:
 
 - `expect(selector).dom.not.to.have.style('property', 'value')`
 
-## Caveats
-
-Right now, we inject an instance of [Sizzle.js](http://sizzlejs.com/) onto the page to ease selection. This is not ideal because it might clobber stuff, but it's a start. And odds are it won't change anything for you.
-
 ## Setup
 
 Setup is pretty easy. Just:
@@ -61,6 +57,16 @@ chai.use chaiWebdriver(driver);
 // And you're good to go!
 driver.get('http://github.com');
 chai.expect('#site-container h1.heading').dom.to.not.contain.text("I'm a kitty!");
+```
+
+## Caveats
+
+Right now, we inject an instance of [Sizzle.js](http://sizzlejs.com/) onto the page to ease selection. This is not ideal because it might clobber stuff, but it's a start. And odds are it won't change anything for you.
+
+If you need to, you can reinject Sizzle into the page at any point with the following:
+
+```javascript
+chaiWebdriver.injectSizzle(driver);
 ```
 
 ## Contributing
