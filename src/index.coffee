@@ -1,33 +1,15 @@
 fs = require 'fs'
 string = require 'string'
-uglify = require 'uglify-js'
 seleniumWebdriver = require 'selenium-webdriver'
-sizzleCode = uglify.minify(
-  fs.readFileSync(require.resolve('sizzle'), 'utf8')
-  fromString: yes
-  output:
-    ascii_only: true
-).code
-
-injectSizzle = (driver) ->
-  if driver.executeScript(-> window.Sizzle)?
-    driver.executeScript sizzleCode
+sizzle = require 'webdriver-sizzle'
 
 module.exports = chaiWebdriver = (driver) ->
-  {get} = driver
-  driver.get = ->
-    get.apply(driver, arguments).then ->
-      injectSizzle driver
 
-  findElementByCss = (css) ->
-    driver.findElement seleniumWebdriver.By.js((css) -> (Sizzle(css) or [])[0]), css
-
-  findElementsByCss = (css) ->
-    driver.findElements seleniumWebdriver.By.js((css) -> Sizzle(css) or []), css
+  $ = sizzle(driver)
 
   (chai, utils) ->
     assertElementExists = (selector, done) ->
-      findElementsByCss(selector).then (els) ->
+      $.all(selector).then (els) ->
         if els.length is 0
           throw new Error "Could not find element with selector #{selector}"
         else
@@ -46,10 +28,10 @@ module.exports = chaiWebdriver = (driver) ->
         done() if typeof done is 'function'
 
       assertDisplayed = =>
-        findElementByCss(@_obj).isDisplayed().then (visible) -> assert(visible)
+        $(@_obj).isDisplayed().then (visible) -> assert(visible)
 
       if utils.flag(@, 'negate')
-        findElementsByCss(@_obj).then (els) ->
+        $.all(@_obj).then (els) ->
           if els.length > 0
             assertDisplayed()
           else
@@ -59,7 +41,7 @@ module.exports = chaiWebdriver = (driver) ->
 
     chai.Assertion.addMethod 'count', (length, done) ->
       throw new Error('Can only test count of dom elements') unless utils.flag @, 'dom'
-      findElementsByCss(@_obj).then (els) =>
+      $.all(@_obj).then (els) =>
         @assert els.length is length,
           'Expected #{this} to appear in the DOM #{exp} times, but it shows up #{act} times instead.'
           'Expected #{this} not to appear in the DOM #{exp} times, but it does.'
@@ -69,7 +51,7 @@ module.exports = chaiWebdriver = (driver) ->
     chai.Assertion.addMethod 'text', (matcher, done) ->
       throw new Error('Can only test text of dom elements') unless utils.flag @, 'dom'
       assertElementExists @_obj, =>
-        findElementByCss(@_obj).getText().then (text) =>
+        $(@_obj).getText().then (text) =>
           if utils.flag @, 'contains'
             @assert ~text.indexOf(matcher),
               'Expected element <#{this}> to contain text "#{exp}", but it contains "#{act}" instead.'
@@ -85,7 +67,7 @@ module.exports = chaiWebdriver = (driver) ->
     chai.Assertion.addMethod 'style', (property, value, done) ->
       throw new Error('Can only test style of dom elements') unless utils.flag @, 'dom'
       assertElementExists @_obj, =>
-        findElementByCss(@_obj).getCssValue(property).then (style) =>
+        $(@_obj).getCssValue(property).then (style) =>
           @assert style is value,
             "Expected #{property} of element <#{@_obj}> to be '#{value}', but it is '#{style}'.",
             "Expected #{property} of element <#{@_obj}> to not be '#{value}', but it is.",
@@ -94,7 +76,7 @@ module.exports = chaiWebdriver = (driver) ->
     chai.Assertion.addMethod 'value', (value, done) ->
       throw new Error('Can only test value of dom elements') unless utils.flag @, 'dom'
       assertElementExists @_obj, =>
-        findElementByCss(@_obj).getAttribute('value').then (actualValue) =>
+        $(@_obj).getAttribute('value').then (actualValue) =>
           @assert value is actualValue,
             "Expected value of element <#{@_obj}> to be '#{value}', but it is '#{actualValue}'.",
             "Expected value of element <#{@_obj}> to not be '#{value}', but it is.",
@@ -103,7 +85,7 @@ module.exports = chaiWebdriver = (driver) ->
     chai.Assertion.addMethod 'disabled', (done) ->
       throw new Error('Can only test value of dom elements') unless utils.flag @, 'dom'
       assertElementExists @_obj, =>
-        findElementByCss(@_obj).getAttribute('disabled').then (disabled) =>
+        $(@_obj).getAttribute('disabled').then (disabled) =>
           @assert disabled,
             'Expected #{this} to be disabled but it is not',
             'Expected #{this} to not be disabled but it is'
@@ -112,9 +94,7 @@ module.exports = chaiWebdriver = (driver) ->
     chai.Assertion.addMethod 'htmlClass', (value, done) ->
       throw new Error('Can only test value of dom elements') unless utils.flag @, 'dom'
       assertElementExists @_obj, =>
-        findElementByCss(@_obj).getAttribute('class').then (classList) =>
+        $(@_obj).getAttribute('class').then (classList) =>
           @assert ~classList.indexOf(value),
             "Expected #{classList} to contain #{value}, but it does not."
           done() if typeof done is 'function'
-
-chaiWebdriver.injectSizzle = injectSizzle

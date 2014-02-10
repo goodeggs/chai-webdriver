@@ -59,7 +59,7 @@ describe 'the basics', ->
 
     it 'verifies that an element has a red background', (done) ->
       expect('.red-bg').dom.to.have.style 'background-color', 'rgba(255, 0, 0, 1)', done
-    
+
     it 'verifies that an element does not have a red background', (done) ->
       expect('.green-text').dom.to.have.style 'background-color', 'rgba(0, 0, 0, 0)', done
 
@@ -92,5 +92,4 @@ describe 'going to a different page', ->
     driver.findElement(webdriver.By.name('link')).click().then -> done()
 
   it 'still allows you to make assertions', (done) ->
-    chaiWebdriver.injectSizzle driver
     expect('.does-exist:text').dom.to.to.be.visible done

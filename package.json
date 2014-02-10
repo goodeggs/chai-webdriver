@@ -26,15 +26,13 @@
   },
   "dependencies": {
     "selenium-webdriver": "~2.39.0",
-    "sizzle": "~1.1.0",
-    "uglify-js": "~2.4.11",
-    "string": "~1.8.0"
+    "string": "~1.8.0",
+    "webdriver-sizzle": "0.0.2"
   },
   "devDependencies": {
     "coffee-script": "~1.6.3",
     "chai": "~1.8.1",
     "mocha": "~1.17.0",
-    "browserify": "~3.19.1",
     "phantomjs": "~1.9.7"
   },
   "engines": {
