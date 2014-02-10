@@ -1,7 +1,4 @@
-# chai-webdriver
-
-[![Build Status](https://travis-ci.org/goodeggs/chai-webdriver.png)](https://travis-ci.org/goodeggs/chai-webdriver)
-[![Dependency Status](https://david-dm.org/goodeggs/chai-webdriver.png)](https://david-dm.org/goodeggs/chai-webdriver)
+# chai-webdriver [![Build Status](https://travis-ci.org/goodeggs/chai-webdriver.png)](https://travis-ci.org/goodeggs/chai-webdriver) [![Dependency Status](https://david-dm.org/goodeggs/chai-webdriver.png)](https://david-dm.org/goodeggs/chai-webdriver) [![NPM version](https://badge.fury.io/js/chai-webdriver.png)](http://badge.fury.io/js/chai-webdriver)
 
 Provides [selenium-webdriver](https://npmjs.org/package/selenium-webdriver) sugar for the [Chai](http://chaijs.com/) assertion library. Allows you to create expressive integration tests:
 
@@ -12,7 +9,7 @@ expect('.toggle-pane').dom.to.not.be.visible()
 
 ## What sorts of assertions can we make?
 
-All assertions start with a css selector, for example:
+All assertions start with a [Sizzle-compatible css selector](http://sizzlejs.com/), for example:
 
 - `expect('.list')`
 - `expect('div > h1')`
@@ -57,16 +54,6 @@ chai.use chaiWebdriver(driver);
 // And you're good to go!
 driver.get('http://github.com');
 chai.expect('#site-container h1.heading').dom.to.not.contain.text("I'm a kitty!");
-```
-
-## Caveats
-
-Right now, we inject an instance of [Sizzle.js](http://sizzlejs.com/) onto the page to ease selection. This is not ideal because it might clobber stuff, but it's a start. And odds are it won't change anything for you.
-
-If you need to, you can reinject Sizzle into the page at any point with the following:
-
-```javascript
-chaiWebdriver.injectSizzle(driver);
 ```
 
 ## Contributing
