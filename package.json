@@ -27,7 +27,7 @@
   "dependencies": {
     "selenium-webdriver": "~2.39.0",
     "string": "~1.8.0",
-    "webdriver-sizzle": "0.0.5"
+    "webdriver-sizzle": "~0.0.5"
   },
   "devDependencies": {
     "coffee-script": "~1.6.3",
