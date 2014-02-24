@@ -49,7 +49,7 @@ var driver = new sw.Builder()
 // And then...
 var chai = require('chai');
 var chaiWebdriver = require('chai-webdriver');
-chai.use chaiWebdriver(driver);
+chai.use(chaiWebdriver(driver));
 
 // And you're good to go!
 driver.get('http://github.com');
