@@ -4,7 +4,7 @@ chai = require 'chai'
 chaiWebdriver = require '..'
 
 driver = new webdriver.Builder()
-  .withCapabilities(webdriver.Capabilities.phantomjs())
+  .withCapabilities(webdriver.Capabilities.chrome())
   .build()
 
 chai.use chaiWebdriver(driver)

@@ -25,7 +25,7 @@
     "url": "https://github.com/goodeggs/chai-webdriver/issues"
   },
   "dependencies": {
-    "selenium-webdriver": "~2.39.0",
+    "selenium-webdriver": ">=2.39.0",
     "string": "~1.8.0",
     "webdriver-sizzle": "~0.0.5"
   },
@@ -33,7 +33,7 @@
     "coffee-script": "~1.6.3",
     "chai": "~1.8.1",
     "mocha": "~1.17.0",
-    "phantomjs": "~1.9.7"
+    "chromedriver": "~2.8.1"
   },
   "engines": {
     "node": ">=0.10.0"
