@@ -6,7 +6,7 @@
   "scripts": {
     "build": "coffee --bare --compile --output lib/ src/",
     "pretest": "npm run-script build",
-    "test": "mocha --compilers coffee:coffee-script spec/*.spec.coffee",
+    "test": "mocha --compilers coffee:coffee-script/register spec/*.spec.coffee",
     "prepublish": "npm run-script build"
   },
   "repository": {
@@ -30,8 +30,8 @@
     "webdriver-sizzle": "~0.0.5"
   },
   "devDependencies": {
-    "coffee-script": "~1.6.3",
-    "chai": "~1.8.1",
+    "coffee-script": "^1.7.1",
+    "chai": "^1.9.0",
     "mocha": "~1.17.0",
     "chromedriver": "~2.8.1"
   },
