@@ -63,7 +63,7 @@ so easy.
 ```bash
 npm install           # download the neccesary development dependencies
 npm run-script build  # compile coffee-script into javascript
-npm test              # build and run the specs (requires chrome to be installed on your machine)
+npm test              # build and run the specs
 ```
 
 ## License

@@ -33,7 +33,7 @@
     "coffee-script": "^1.7.1",
     "chai": "^1.9.0",
     "mocha": "~1.17.0",
-    "chromedriver": "~2.8.1"
+    "phantomjs": "^1.9.7-1"
   },
   "engines": {
     "node": ">=0.10.0"

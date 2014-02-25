@@ -3,8 +3,10 @@ webdriver = require 'selenium-webdriver'
 chai = require 'chai'
 chaiWebdriver = require '..'
 
+webdriver.logging = LevelName: 'DEBUG' # this seems like a bug in webdriver...
+
 driver = new webdriver.Builder()
-  .withCapabilities(webdriver.Capabilities.chrome())
+  .withCapabilities(webdriver.Capabilities.phantomjs())
   .build()
 
 chai.use chaiWebdriver(driver)
