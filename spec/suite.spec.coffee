@@ -87,6 +87,16 @@ describe 'the basics', ->
     it 'verifies than an element does not have a given class', (done) ->
       expect('.green-text').dom.not.to.have.htmlClass 'second-class', done
 
+  describe 'attribute', ->
+    it 'verifies that an element attribute has a given value', (done) ->
+        expect('input.does-exist').dom.to.have.attribute 'value', 'People put stuff here', done
+        
+    it 'verifies that an element attribute does not have a given value', (done) ->
+        expect('input.does-exist').dom.not.to.have.attribute 'input', 'radio', done
+        
+    it 'verifies that a not-existing element attribute does not have a value', (done) ->
+        expect('input.does-exist').dom.not.to.have.attribute 'href', done
+
 describe 'going to a different page', ->
   before (done) ->
     @timeout 0
