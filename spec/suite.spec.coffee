@@ -94,8 +94,14 @@ describe 'the basics', ->
     it 'verifies that an element attribute does not have a given value', (done) ->
         expect('input.does-exist').dom.not.to.have.attribute 'input', 'radio', done
         
-    it 'verifies that a not-existing element attribute does not have a value', (done) ->
+    it 'verifies that an attribute does not exist', (done) ->
         expect('input.does-exist').dom.not.to.have.attribute 'href', done
+        
+    it 'verifies that an attribute exists', (done) ->
+        expect('input.does-exist').dom.to.have.attribute 'type', done
+        
+    it 'verifies that an empty attribute exists', (done) ->
+        expect('input.does-exist').dom.to.have.attribute 'empty', done
 
 describe 'going to a different page', ->
   before (done) ->
