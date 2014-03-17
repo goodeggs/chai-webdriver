@@ -29,6 +29,7 @@ Finally, we can add our assertion to the chain:
 - `expect(selector).dom.to.have.style('property', 'value')` - Test the CSS style of the element. Exact matches only, unfortunately, for now.
 - `expect(selector).dom.to.have.value('string')` - Test the value of a form field against supplied string.
 - `expect(selector).dom.to.have.htmlClass('warning')` - Tests that the element has `warning` as one of its class attributes.
+- `expect(selector).dom.to.have.attribute('attribute', 'value')` - Test an element's attribute value. Exact matches only. By omitting `value` test simply checks for existance of attribute.
 
 You can also always add a `not` in there to negate the assertion:
 
