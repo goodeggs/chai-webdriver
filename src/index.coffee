@@ -18,6 +18,9 @@ module.exports = chaiWebdriver = (driver) ->
     chai.Assertion.addProperty 'dom', ->
       utils.flag @, 'dom', true
 
+    chai.Assertion.addProperty 'match', ->
+      utils.flag @, 'match', true
+
     chai.Assertion.addMethod 'visible', (done) ->
       throw new Error('Can only test visibility of dom elements') unless utils.flag @, 'dom'
 
@@ -56,6 +59,11 @@ module.exports = chaiWebdriver = (driver) ->
             @assert ~text.indexOf(matcher),
               'Expected element <#{this}> to contain text "#{exp}", but it contains "#{act}" instead.'
               'Expected element <#{this}> not to contain text "#{exp}", but it contains "#{act}".'
+              matcher, text
+          else if utils.flag @, 'match'
+            @assert matcher.test(text),
+              'Expected element <#{this}> to match regular expression "#{exp}", but it contains "#{act}".'
+              'Expected element <#{this}> not to match regular expression "#{exp}"; it contains "#{act}".'
               matcher, text
           else
             @assert text is matcher,
@@ -98,7 +106,7 @@ module.exports = chaiWebdriver = (driver) ->
           @assert ~classList.indexOf(value),
             "Expected #{classList} to contain #{value}, but it does not."
           done() if typeof done is 'function'
-                
+
     chai.Assertion.addMethod 'attribute', (attribute, value, done) ->
       throw new Error('Can only test style of dom elements') unless utils.flag @, 'dom'
       assertElementExists @_obj, =>
