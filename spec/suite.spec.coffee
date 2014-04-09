@@ -38,6 +38,12 @@ describe 'the basics', ->
     it 'verifies that an element does not contain text', (done) ->
       expect('h1').dom.not.to.contain.text "Bibimbap", done
 
+    it 'verifies that an element has a regexp match', (done) ->
+      expect('h1').dom.to.match.text /following.*excerpt/, done
+
+    it 'verifies that an element does not match the regexp', (done) ->
+      expect('h1').dom.not.to.match.text /following.*food/, done
+
   describe '#visible', ->
 
     it 'verifies that an element is visible', (done) ->
@@ -90,16 +96,16 @@ describe 'the basics', ->
   describe 'attribute', ->
     it 'verifies that an element attribute has a given value', (done) ->
         expect('input.does-exist').dom.to.have.attribute 'value', 'People put stuff here', done
-        
+
     it 'verifies that an element attribute does not have a given value', (done) ->
         expect('input.does-exist').dom.not.to.have.attribute 'input', 'radio', done
-        
+
     it 'verifies that an attribute does not exist', (done) ->
         expect('input.does-exist').dom.not.to.have.attribute 'href', done
-        
+
     it 'verifies that an attribute exists', (done) ->
         expect('input.does-exist').dom.to.have.attribute 'type', done
-        
+
     it 'verifies that an empty attribute exists', (done) ->
         expect('input.does-exist').dom.to.have.attribute 'empty', done
 
