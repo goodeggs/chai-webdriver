@@ -25,27 +25,42 @@ describe 'the basics', ->
     driver.get(url 'finnegan.html').then -> done()
 
   describe '#text', ->
-
     it 'verifies that an element has exact text', (done) ->
       expect('h1').dom.to.have.text "The following text is an excerpt from Finnegan's Wake by James Joyce", done
 
     it 'verifies that an element does not have exact text', (done) ->
       expect('h1').dom.not.to.have.text "Wake", done
 
-    it 'verifies that an element contains text', (done) ->
-      expect('h1').dom.to.contain.text "Finnegan", done
+  describe '#contain', ->
+    describe 'on a dom element', ->
+      it 'verifies that an element contains text', (done) ->
+        expect('h1').dom.to.contain.text "Finnegan", done
 
-    it 'verifies that an element does not contain text', (done) ->
-      expect('h1').dom.not.to.contain.text "Bibimbap", done
+      it 'verifies that an element does not contain text', (done) ->
+        expect('h1').dom.not.to.contain.text "Bibimbap", done
 
+    describe 'not on a dom element', ->
+      it 'verifies that a string contains text', ->
+        expect('John Finnegan').to.contain "Finnegan"
+
+      it 'verifies that a string does not contain text', ->
+        expect('John Finnegan').dom.not.to.contain "Bibimbap"
+
+  describe '#match', ->
     it 'verifies that an element has a regexp match', (done) ->
-      expect('h1').dom.to.match.text /following.*excerpt/, done
+      expect('h1').dom.to.match /following.*excerpt/, done
 
     it 'verifies that an element does not match the regexp', (done) ->
-      expect('h1').dom.not.to.match.text /following.*food/, done
+      expect('h1').dom.not.to.match /following.*food/, done
+
+    describe 'not on a dom element', ->
+      it 'verifies that a string does match the regexp', ->
+        expect('some test text').to.match /test/
+
+      it 'verifies that a string does not match the regexp', ->
+        expect('some test text').not.to.match /taste/
 
   describe '#visible', ->
-
     it 'verifies that an element is visible', (done) ->
       expect('.does-exist:text').dom.to.be.visible done
 
@@ -56,7 +71,6 @@ describe 'the basics', ->
       expect('.exists-but-hidden').dom.not.to.be.visible done
 
   describe '#count', ->
-
     it 'verifies that an element appears thrice', (done) ->
       expect('input').dom.to.have.count 3, done
 
@@ -64,7 +78,6 @@ describe 'the basics', ->
       expect('.does-not-exist').dom.to.have.count 0, done
 
   describe '#style', ->
-
     it 'verifies that an element has a red background', (done) ->
       expect('.red-bg').dom.to.have.style 'background-color', 'rgba(255, 0, 0, 1)', done
 
@@ -72,7 +85,6 @@ describe 'the basics', ->
       expect('.green-text').dom.to.have.style 'background-color', 'rgba(0, 0, 0, 0)', done
 
   describe '#value', ->
-
     it 'verifies that a text field has a specific value', (done) ->
       expect('.does-exist').dom.to.have.value 'People put stuff here', done
 
