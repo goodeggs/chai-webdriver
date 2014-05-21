@@ -31,6 +31,13 @@ describe 'the basics', ->
     it 'verifies that an element does not have exact text', (done) ->
       expect('h1').dom.not.to.have.text "Wake", done
 
+  describe '#text (regexp version)', ->
+    it 'verifies that an element has a regexp match', (done) ->
+      expect('h1').dom.to.have.text /following.*excerpt/, done
+
+    it 'verifies that an element does not match the regexp', (done) ->
+      expect('h1').dom.not.to.have.text /following.*food/, done
+
   describe '#contain', ->
     describe 'on a dom element', ->
       it 'verifies that an element contains text', (done) ->

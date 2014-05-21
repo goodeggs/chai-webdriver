@@ -65,7 +65,12 @@ module.exports = chaiWebdriver = (driver) ->
       throw new Error('Can only test text of dom elements') unless utils.flag @, 'dom'
       assertElementExists @_obj, =>
         $(@_obj).getText().then (text) =>
-          if utils.flag @, 'contains'
+          if matcher instanceof RegExp
+            @assert matcher.test(text),
+              'Expected element <#{this}> to match regular expression "#{exp}", but it contains "#{act}".'
+              'Expected element <#{this}> not to match regular expression "#{exp}"; it contains "#{act}".'
+              matcher, text
+          else if utils.flag @, 'contains'
             @assert ~text.indexOf(matcher),
               'Expected element <#{this}> to contain text "#{exp}", but it contains "#{act}" instead.'
               'Expected element <#{this}> not to contain text "#{exp}", but it contains "#{act}".'
