@@ -119,14 +119,19 @@ module.exports = chaiWebdriver = (driver) ->
 
     chai.Assertion.addMethod 'attribute', (attribute, value, done) ->
       throw new Error('Can only test style of dom elements') unless utils.flag @, 'dom'
+
+
       assertElementExists @_obj, =>
         $(@_obj).getAttribute(attribute).then (actual) =>
-          if typeof value is 'function'
+          # only check existence, with or without callback
+          if typeof value is 'function' or (not value? and not done?)
             done = value
             @assert typeof actual is 'string',
               "Expected attribute #{attribute} of element <#{@_obj}> to exist",
               "Expected attribute #{attribute} of element <#{@_obj}> to not exist",
             done?()
+
+          # check value, with or without callback.
           else
             @assert actual is value,
               "Expected attribute #{attribute} of element <#{@_obj}> to be '#{value}', but it is '#{actual}'.",

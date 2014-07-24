@@ -133,8 +133,13 @@ describe 'the basics', ->
       expect(promise).to.exist.and.to.have.property 'then'
       promise.then -> done()
 
-    it 'returns a promise for negative', (done)->
-      promise = expect('.exists-but-hidden').dom.not.to.be.visible
+    it 'returns a promise for non-existing', (done)->
+      promise = expect('.does-not-exist').dom.not.to.be.visible()
+      expect(promise).to.exist.and.to.have.property 'then'
+      promise.then -> done()
+
+    it 'returns a promise for invisible', (done)->
+      promise = expect('.exists-but-hidden').dom.not.to.be.visible()
       expect(promise).to.exist.and.to.have.property 'then'
       promise.then -> done()
 
