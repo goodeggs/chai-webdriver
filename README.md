@@ -37,6 +37,9 @@ You can also always add a `not` in there to negate the assertion:
 
 - `expect(selector).dom.not.to.have.style('property', 'value')`
 
+
+### Asynchronous flow
+
 Note that all these assertions are presumed to be *asynchronous* (using selenium-webdriver's promise chain).
 They can all take callbacks, or be chained with promises. For example:
 
