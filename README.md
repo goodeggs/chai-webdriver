@@ -19,7 +19,7 @@ Then we add the dom flag, like so:
 
 - `expect(selector).dom`
 
-Finally, we can add our assertion to the chain:
+Finally, we can add our assertion to the chain.
 
 - `expect(selector).dom.to.have.text('string')` - Test the text value of the dom against supplied string. Exact matches only.
 - `expect(selector).dom.to.contain.text('string')` - Test the text value of the dom against supplied string. Partial matches allowed.
@@ -36,6 +36,13 @@ Finally, we can add our assertion to the chain:
 You can also always add a `not` in there to negate the assertion:
 
 - `expect(selector).dom.not.to.have.style('property', 'value')`
+
+Note that all these assertions are presumed to be *asynchronous* (using selenium-webdriver's promise chain).
+They can all take callbacks, or be chained with promises. For example:
+
+- `expect(selector).dom.to.have.text('string', function(){...})`
+- `expect(selector).dom.to.have.text('string').then(function(){...})`
+
 
 ## Setup
 
