@@ -5,7 +5,7 @@ sizzle = require 'webdriver-sizzle'
 
 module.exports = chaiWebdriver = (driver) ->
 
-  $ = sizzle(driver)
+  $ = sizzle driver, seleniumWebdriver
 
   (chai, utils) ->
     assertElementExists = (selector, done) ->
