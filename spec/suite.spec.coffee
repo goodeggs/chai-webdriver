@@ -270,6 +270,30 @@ describe 'the basics', ->
       promise.then -> done()
 
 
+describe 'errors on failures', ->
+  before (done) ->
+    @timeout 0 # this may take a while in CI
+    driver.get(url 'finnegan.html').then -> done()
+
+  ## TODO -- actually they're just thrown. worth making this work?
+  it.skip 'are passed to callback', (done) ->
+    expect('h1').dom.to.have.text "La di da di da", (err)->
+      expect(err).to.exist.and.to.be.an.instanceOf(Error)
+      expect(err.message).to.contain('Expected text of element')
+      done()
+
+  it 'are rejected with promise', (done)->
+    promise = expect('h1').dom.to.have.text "La di da di da"
+    promise
+      .then ->
+        done new Error "Did not get expected error"
+      .thenCatch (err)->
+        expect(err).to.exist.and.to.be.an.instanceOf(Error)
+        expect(err.message).to.contain('Expected text of element')
+        done()
+
+
+
 describe 'going to a different page', ->
   before (done) ->
     @timeout 0
