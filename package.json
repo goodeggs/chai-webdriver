@@ -6,7 +6,7 @@
   "scripts": {
     "build": "coffee --bare --compile --output lib/ src/",
     "pretest": "npm run-script build",
-    "test": "mocha --compilers coffee:coffee-script/register spec/*.spec.coffee",
+    "test": "mocha --compilers coffee:coffee-script/register spec/*.spec.coffee --reporter=spec",
     "prepublish": "npm run-script build"
   },
   "repository": {
