@@ -1,6 +1,6 @@
 {
   "name": "chai-webdriver",
-  "version": "0.9.2",
+  "version": "0.9.3",
   "description": "Build more expressive integration tests with some webdriver sugar for chai.js",
   "main": "lib/index.js",
   "scripts": {
@@ -27,7 +27,7 @@
   "dependencies": {
     "selenium-webdriver": ">=2.42.0",
     "string": "~1.8.0",
-    "webdriver-sizzle": "~0.2.x"
+    "webdriver-sizzle": ">= 0.2.1"
   },
   "devDependencies": {
     "coffee-script": "^1.7.1",
