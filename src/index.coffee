@@ -88,16 +88,21 @@ module.exports = chaiWebdriver = (driver) ->
         $(@_obj).getCssValue(property).then (style) =>
           @assert style is value,
             "Expected #{property} of element <#{@_obj}> to be '#{value}', but it is '#{style}'.",
-            "Expected #{property} of element <#{@_obj}> to not be '#{value}', but it is.",
+            "Expected #{property} of element <#{@_obj}> to not be '#{value}', but it is."
           done?()
 
     chai.Assertion.addMethod 'value', (value, done) ->
       throw new Error('Can only test value of dom elements') unless utils.flag @, 'dom'
       assertElementExists @_obj, =>
         $(@_obj).getAttribute('value').then (actualValue) =>
-          @assert value is actualValue,
-            "Expected value of element <#{@_obj}> to be '#{value}', but it is '#{actualValue}'.",
-            "Expected value of element <#{@_obj}> to not be '#{value}', but it is.",
+          if value instanceof RegExp
+            @assert value.test(actualValue),
+              "Expected value of element <#{@_obj}> to be '#{value}', but it is '#{actualValue}'.",
+              "Expected value of element <#{@_obj}> to not be '#{value}', but it is."
+          else
+            @assert value is actualValue,
+              "Expected value of element <#{@_obj}> to be '#{value}', but it is '#{actualValue}'.",
+              "Expected value of element <#{@_obj}> to not be '#{value}', but it is."
           done?()
 
     chai.Assertion.addMethod 'disabled', (done) ->
@@ -120,7 +125,6 @@ module.exports = chaiWebdriver = (driver) ->
     chai.Assertion.addMethod 'attribute', (attribute, value, done) ->
       throw new Error('Can only test style of dom elements') unless utils.flag @, 'dom'
 
-
       assertElementExists @_obj, =>
         $(@_obj).getAttribute(attribute).then (actual) =>
           # only check existence, with or without callback
@@ -128,12 +132,16 @@ module.exports = chaiWebdriver = (driver) ->
             done = value
             @assert typeof actual is 'string',
               "Expected attribute #{attribute} of element <#{@_obj}> to exist",
-              "Expected attribute #{attribute} of element <#{@_obj}> to not exist",
+              "Expected attribute #{attribute} of element <#{@_obj}> to not exist"
             done?()
 
-          # check value, with or without callback.
           else
-            @assert actual is value,
-              "Expected attribute #{attribute} of element <#{@_obj}> to be '#{value}', but it is '#{actual}'.",
-              "Expected attribute #{attribute} of element <#{@_obj}> to not be '#{value}', but it is.",
+            if value instanceof RegExp
+              @assert value.test(actual),
+                "Expected attribute #{attribute} of element <#{@_obj}> to match '#{value}', but it is '#{actual}'.",
+                "Expected attribute #{attribute} of element <#{@_obj}> to not match '#{value}', but it does."
+            else
+              @assert actual is value,
+                "Expected attribute #{attribute} of element <#{@_obj}> to be '#{value}', but it is '#{actual}'.",
+                "Expected attribute #{attribute} of element <#{@_obj}> to not be '#{value}', but it is."
             done?()
