@@ -179,10 +179,13 @@ describe 'the basics', ->
 
 
   describe '#value', ->
-    it 'verifies that a text field has a specific value', (done) ->
+    it 'verifies that a text field has an equal value', (done) ->
       expect('.does-exist').dom.to.have.value 'People put stuff here', done
 
-    it 'verifies that a text field does not have a specific value', (done) ->
+    it 'verifies that a text field has a matching value', (done) ->
+      expect('.does-exist').dom.to.have.value /stuff/i, done
+
+    it 'verifies that a text field does not have an equal value', (done) ->
       expect('.does-exist').dom.not.to.have.value 'Beep boop', done
 
     it 'returns a promise for affirmative', (done)->
@@ -234,10 +237,13 @@ describe 'the basics', ->
 
   describe 'attribute', ->
 
-    it 'verifies that an element attribute has a given value', (done) ->
+    it 'verifies that an element attribute has an equal value', (done) ->
       expect('input.does-exist').dom.to.have.attribute 'value', 'People put stuff here', done
 
-    it 'verifies that an element attribute does not have a given value', (done) ->
+    it 'verifies that an element attribute has a matching value', (done) ->
+      expect('input.does-exist').dom.to.have.attribute 'value', /stuff/i, done
+
+    it 'verifies that an element attribute does not have an equal value', (done) ->
       expect('input.does-exist').dom.not.to.have.attribute 'input', 'radio', done
 
     it 'verifies that an attribute does not exist', (done) ->
