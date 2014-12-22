@@ -38,6 +38,10 @@
   "peerDependencies": {
     "selenium-webdriver": ">=2.42.0"
   },
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/",
+    "always-auth": true
+  },
   "engines": {
     "node": ">=0.10.0"
   }
