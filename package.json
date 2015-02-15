@@ -36,7 +36,8 @@
     "coffee-errors": "^0.8.6"
   },
   "peerDependencies": {
-    "selenium-webdriver": ">=2.42.0"
+    "selenium-webdriver": ">=2.42.0",
+    "chai": ">= 1 <= 2"
   },
   "publishConfig": {
     "registry": "https://registry.npmjs.org/",
