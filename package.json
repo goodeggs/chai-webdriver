@@ -1,6 +1,6 @@
 {
   "name": "chai-webdriver",
-  "version": "1.2.0",
+  "version": "1.2.2-0",
   "description": "Build more expressive integration tests with some webdriver sugar for chai.js",
   "main": "lib/index.js",
   "scripts": {
