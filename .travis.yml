@@ -1,6 +1,10 @@
 language: node_js
 node_js:
-  - "4.2"
-  - "0.12"
-  - "0.11"
-  - "0.10"
+  - "12"
+  - "8"
+
+env:
+  global:
+    # Specify directory for phantomjs to install binary. We're stuck on a very old version that
+    # throws an eror with node>=8 if this isn't set.
+    - TMPDIR='/tmp'
