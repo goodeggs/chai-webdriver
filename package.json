@@ -33,8 +33,8 @@
     "coffee-errors": "^0.8.6",
     "coffee-script": "^1.7.1",
     "mocha": "~1.17.0",
-    "phantomjs": "^1.9.7-1",
-    "selenium-webdriver": "~2.42.0"
+    "phantomjs": "1.9.20",
+    "selenium-webdriver": "2.42.1"
   },
   "peerDependencies": {
     "chai": ">= 1 < 4",

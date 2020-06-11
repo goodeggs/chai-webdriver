@@ -507,7 +507,7 @@ pend@~1.2.0:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/pend/-/pend-1.2.0.tgz#7a57eb550a6783f9115331fcf4663d5c8e007a50"
 
-phantomjs@^1.9.7-1:
+phantomjs@1.9.20:
   version "1.9.20"
   resolved "https://registry.yarnpkg.com/phantomjs/-/phantomjs-1.9.20.tgz#4424aca20e14d255c0b0889af6f6b8973da10e0d"
   dependencies:
@@ -594,7 +594,7 @@ safer-buffer@^2.0.2, safer-buffer@^2.1.0, safer-buffer@~2.1.0:
   version "2.1.2"
   resolved "https://registry.yarnpkg.com/safer-buffer/-/safer-buffer-2.1.2.tgz#44fa161b0187b9549dd84bb91802f9bd8385cd6a"
 
-selenium-webdriver@~2.42.0:
+selenium-webdriver@2.42.1:
   version "2.42.1"
   resolved "https://registry.yarnpkg.com/selenium-webdriver/-/selenium-webdriver-2.42.1.tgz#61984d1583b89c80a9f3bf31623d00bcc82a8d0e"
 
